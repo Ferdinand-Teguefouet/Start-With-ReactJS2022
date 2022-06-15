@@ -4,17 +4,20 @@ import Colors from 'theme/Colors';
 
 export const ButtonStyled = styled.button`
 /* This renders the buttons above... Edit me! */
-display: inline-block;
-border-radius: 3px;
-padding: 0.5rem 0;
-margin: 0.5rem 1rem;
-width: 11rem;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: ${(props) => (props.iconPosition === 'left' ? 'row' : 'row-reverse')};
+border-radius: 6px;
+padding: 0.75rem 2rem;
 background: ${Colors.mainColor};
+border: none;
 color: white;
-border: 2px solid white;
+transition: background-color 0.15s ease;
 
 &:hover{
     background-color: brown;
+    cursor: pointer;
 }
 &:disabled{
     opacity: 0.65;
@@ -22,4 +25,10 @@ border: 2px solid white;
         cursor: not-allowed;
     }
 }
+
+span{
+    margin-left: ${(props) => (props.iconPosition === 'left' ? '0.75rem' : '0px')};
+    margin-right: ${(props) => (props.iconPosition === 'right' ? '0.75rem' : '0px')};
+}
+
 `;

@@ -8,12 +8,20 @@ import {
     faCheckSquare,
     FontAwesomeIcon
 } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { ButtonStyled } from './Button.styles';
 
 //styles
-import {ButtonStyled} from './Button.styles';
-
-function Button({text, loadingText, isLoading = false, onClick}){
+function Button({text,
+        loadingText,
+        textStyles,
+        buttonsStyles,
+        iconsStyles,
+        icon,
+        iconPosition,
+        iconLoading,
+        showSpinner,
+        isLoading = false, 
+        onClick}){
     const handleClick = () => {
         if(isLoading){
             return;
@@ -22,9 +30,14 @@ function Button({text, loadingText, isLoading = false, onClick}){
     }
     return <ButtonStyled
                 className='red-button'
-                onClick={handleClick} disabled={isLoading}>
-                    <FontAwesomeIcon icon={faUser} />
-                {isLoading ? loadingText : text}
+                onClick={handleClick} 
+                disabled={isLoading}
+                style={{...buttonsStyles}}
+                iconPosition={iconPosition}
+            >
+                {iconPosition === "left" || iconPosition === "right" ? (<FontAwesomeIcon icon={isLoading && showSpinner ? iconLoading : icon} style={{iconsStyles}} spin={showSpinner} />) : null}                    
+                <span style={{...textStyles}}>{isLoading ? loadingText : text}</span>
+                
             </ButtonStyled>
 }
 
