@@ -7,7 +7,7 @@ function Collaborator({image, title, url}) {
     return (
         <CollaboratorsStyled className='collaborator'>
            <img src={image} alt={title} />
-           <h1>{title}</h1>
+           <h3>{title}</h3>
            <a href={url}>{url}</a> 
         </CollaboratorsStyled>
     );
